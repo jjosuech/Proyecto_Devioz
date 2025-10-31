@@ -1,0 +1,395 @@
+<header class="header">
+  <!-- header top -->
+  <div class="header-top">
+    <div class="container">
+      <div class="header-top-wrapper">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6 col-xl-5">
+            <div class="header-top-left">
+              <ul class="header-top-list">
+                <li>
+                  <a href="#">
+                    <i class="far fa-envelopes"></i>
+                    <span>[correo electrónico protegido]</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+21236547898">
+                    <i class="far fa-headset"></i>+2 123 654 7898
+                  </a>
+                </li>
+                <li class="help">
+                  <a href="#"><i class="far fa-comment-question"></i>¿Necesitar ayuda?</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6 col-xl-7">
+            <div class="header-top-right">
+              <ul class="header-top-list">
+                <li><a href="#"><i class="far fa-alarm-clock"></i>Oferta diaria</a></li>
+                <li class="account"><a href="#"><i class="far fa-user-vneck"></i>Cuenta</a></li>
+
+                <!--CORRECION DE LOGIN-->
+                <li class="login">
+                  <a href="{{ url_for('login') }}">
+                    <i class="far fa-arrow-right-to-arc"></i> Acceso
+                  </a>
+                </li>
+
+
+                <li>
+                  <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="far fa-usd"></i>Dólar estadounidense
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Dólar estadounidense</a>
+                      <a class="dropdown-item" href="#">Euros</a>
+                      <a class="dropdown-item" href="#">Dólar australiano</a>
+                      <a class="dropdown-item" href="#">Rupia</a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="far fa-globe-americas"></i>ES
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">ES</a>
+                      <a class="dropdown-item" href="#">EN</a>
+                      <a class="dropdown-item" href="#">FR</a>
+                      <a class="dropdown-item" href="#">PT</a>
+                    </div>
+                  </div>
+                </li>
+                <li class="social">
+                  <div class="header-top-social">
+                    <span>Síganos:</span>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- row -->
+      </div>
+    </div>
+  </div>
+  <!-- header middle -->
+  <div class="header-middle">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-5 col-lg-3 col-xl-3">
+          <div class="header-middle-logo">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+              <img src="/static/assets/img/logo/logo.png" alt="logo" />
+            </a>
+          </div>
+        </div>
+        <div class="d-none d-lg-block col-lg-6 col-xl-5">
+          <div class="header-middle-search">
+            <form action="{{ url_for('shop') }}" method="get">
+              <div class="search-content">
+
+                <input class="form-control" type="text" name="q" placeholder="Search Here..." />
+                <button class="search-btn" type="submit"><i class="far fa-search"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-7 col-lg-3 col-xl-4">
+          <div class="header-middle-right">
+            <ul class="header-middle-list">
+
+              <li><a class="list-item" href="{{ url_for('login') }}"><i class="far fa-user-circle"></i></a></li>
+
+             
+              <li><a class="list-item" href="#"><i class="far fa-arrows-rotate"></i><span>0</span></a></li>
+              <li><a class="list-item" href="#"><i class="far fa-heart"></i><span>0</span></a></li>
+              <li class="dropdown-cart">
+                <a class="shop-cart list-item" href="{{ url_for('cart_page') }}">
+                  <i class="far fa-shopping-bag"></i>
+                  <span id="cart-count">0</span>
+                </a>
+                <div class="dropdown-cart-menu">
+                  <div class="dropdown-cart-header">
+                    <span id="cart-items-count">00 artículos</span>
+                    <a href="{{ url_for('cart_page') }}">Ver carrito</a>
+                  </div>
+                  <ul class="dropdown-cart-list" id="cart-list"></ul>
+                  <div class="dropdown-cart-bottom">
+                    <div class="dropdown-cart-total">
+                      <span>Total</span>
+                      <span class="total-amount" id="cart-total">$0.00</span>
+                    </div>
+                    <a class="theme-btn" href="{{ url_for('checkout_page') }}">Verificar</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div>
+  </div>
+
+  <!-- header main navigation -->
+  <div class="main-navigation">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container position-relative">
+        <a class="navbar-brand d-lg-none" href="{{ url_for('home') }}">
+          <img class="logo-scrolled" src="/static/assets/img/logo/logo.png" alt="logo" />
+        </a>
+
+        <div class="category-all">
+  <button class="category-btn" type="button">
+    <i class="far fa-grid-2-plus"></i><span>Todas las categorías</span>
+  </button>
+  <ul class="main-category">
+    {% for C in nav_categories %}
+      <li>
+        <a href="{{ url_for('shop') }}?cat={{ C.name | urlencode }}">
+          <img src="/static/assets/img/icon/{{ C.icon or 'laptop.svg' }}" alt="">
+          <span>{{ C.name }}</span>
+          {% if C.children %}<i class="far fa-angle-right"></i>{% endif %}
+        </a>
+
+        {% if C.children %}
+          <ul class="sub-category">
+            {% for sub in C.children %}
+              <li>
+                <a href="{{ url_for('shop') }}?cat={{ C.name | urlencode }}&sub={{ sub | urlencode }}">
+                  <img src="/static/assets/img/icon/{{ C.icon or 'laptop.svg' }}" alt="">
+                  <span>{{ sub }}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="mobile-menu-right">
+          <div class="search-btn">
+            <button class="nav-right-link" type="button"><i class="far fa-search"></i></button>
+            <div class="mobile-search-form">
+              <form action="{{ url_for('shop') }}">
+                <input class="form-control" name="q" placeholder="Search Here..." type="text" />
+                <button type="submit"><i class="far fa-search"></i></button>
+              </form>
+            </div>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-mobile-icon"><i class="far fa-bars"></i></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main_nav">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle {% if request.endpoint == 'home' %}active{% endif %}" href="#" data-bs-toggle="dropdown">Hogar</a>
+              <ul class="dropdown-menu fade-down">
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo casera 01</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo casera 02</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 03</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 04</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 05</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 06</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 07</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 08</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo en casa 09</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('home') }}">Demo casera 10</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">Acerca de</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Páginas</a>
+              <ul class="dropdown-menu fade-down">
+                <li><a class="dropdown-item" href="{{ url_for('about') }}">Sobre nosotros</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('become_seller') }}">Conviértete en vendedor</a></li>
+                <li><a class="dropdown-item" href="#">Marcas</a></li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Categoría</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Categoría uno</a></li>
+                    <li><a class="dropdown-item" href="#">Categoría dos</a></li>
+                    <li><a class="dropdown-item" href="#">Categoría tres</a></li>
+                    <li><a class="dropdown-item" href="#">Categoría cuatro</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Autenticación</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Acceso</a></li>
+                    <li><a class="dropdown-item" href="#">Registro</a></li>
+                    <li><a class="dropdown-item" href="#">Has olvidado tu contraseña</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Páginas adicionales</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Error 404</a></li>
+                    <li><a class="dropdown-item" href="#">Muy pronto</a></li>
+                    <li><a class="dropdown-item" href="#">Política de devoluciones</a></li>
+                    <li><a class="dropdown-item" href="#">Condiciones de servicio</a></li>
+                    <li><a class="dropdown-item" href="#">Política de privacidad</a></li>
+                    <li><a class="dropdown-item" href="#">Éxito del correo</a></li>
+                  </ul>
+                </li>
+                <li><a class="dropdown-item" href="#">Nuestro equipo</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('contact') }}">Contáctenos</a></li>
+                <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                <li><a class="dropdown-item" href="#">Facturas</a></li>
+                <li><a class="dropdown-item" href="#">Preguntas frecuentes</a></li>
+                <li><a class="dropdown-item" href="#">Testimonios</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Usuario</a>
+              <ul class="dropdown-menu fade-down">
+                <li><a class="dropdown-item" href="#">Panel</a></li>
+                <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="#">Lista de pedidos</a></li>
+                <li><a class="dropdown-item" href="#">Detalles del pedido</a></li>
+                <li><a class="dropdown-item" href="#">Mi lista de deseos</a></li>
+                <li><a class="dropdown-item" href="#">Agregar dirección</a></li>
+                <li><a class="dropdown-item" href="#">Lista de direcciones</a></li>
+                <li><a class="dropdown-item" href="#">Tickets de soporte</a></li>
+                <li><a class="dropdown-item" href="#">Detalles de las entradas</a></li>
+                <li><a class="dropdown-item" href="#">Seguimiento de mi pedido</a></li>
+                <li><a class="dropdown-item" href="#">Métodos de pago</a></li>
+                <li><a class="dropdown-item" href="#">Agregar pago</a></li>
+                <li><a class="dropdown-item" href="#">Mensajes</a></li>
+                <li><a class="dropdown-item" href="#">Ajustes</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item mega-menu dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Menú<span class="new">Nuevo</span></a>
+              <div class="dropdown-menu fade-down">
+                <div class="mega-content">
+                  <div class="container-fluid px-lg-0">
+                    <div class="row">
+                      <div class="col-12 col-lg-2">
+                        <h5 class="mega-menu-title">Moda</h5>
+                        <ul class="mega-menu-item">
+                          <li><a class="dropdown-item" href="#">Camisa de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camiseta de hombre</a></li>
+                          <li><a class="dropdown-item" href="#">Gafas de sol para mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Bolsos bandolera</a></li>
+                          <li><a class="dropdown-item" href="#">Reloj de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camisa de hombre</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-12 col-lg-2">
+                        <h5 class="mega-menu-title">Moda</h5>
+                        <ul class="mega-menu-item">
+                          <li><a class="dropdown-item" href="#">Camisa de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camiseta de hombre</a></li>
+                          <li><a class="dropdown-item" href="#">Gafas de sol para mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Bolsos bandolera</a></li>
+                          <li><a class="dropdown-item" href="#">Reloj de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camisa de hombre</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-12 col-lg-2">
+                        <h5 class="mega-menu-title">Moda</h5>
+                        <ul class="mega-menu-item">
+                          <li><a class="dropdown-item" href="#">Camisa de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camiseta de hombre</a></li>
+                          <li><a class="dropdown-item" href="#">Gafas de sol para mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Bolsos bandolera</a></li>
+                          <li><a class="dropdown-item" href="#">Reloj de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camisa de hombre</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-12 col-lg-2">
+                        <h5 class="mega-menu-title">Moda</h5>
+                        <ul class="mega-menu-item">
+                          <li><a class="dropdown-item" href="#">Camisa de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camiseta de hombre</a></li>
+                          <li><a class="dropdown-item" href="#">Gafas de sol para mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Bolsos bandolera</a></li>
+                          <li><a class="dropdown-item" href="#">Reloj de mujer</a></li>
+                          <li><a class="dropdown-item" href="#">Camisa de hombre</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-12 col-lg-4">
+                        <div class="mega-menu-img">
+                          <a href="#"><img src="/static/assets/img/banner/mega-menu-banner.jpg" alt=""></a>
+                        </div>
+                      </div>
+                    </div> <!-- row -->
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Comercio</a>
+              <ul class="dropdown-menu fade-down">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Cuadrícula de tiendas</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Tienda Grid One</a></li>
+                    <li><a class="dropdown-item" href="#">Cuadrícula de tiendas dos</a></li>
+                    <li><a class="dropdown-item" href="#">Cuadrícula de tiendas tres</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Lista de la tienda</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Lista uno</a></li>
+                    <li><a class="dropdown-item" href="#">Lista dos</a></li>
+                    <li><a class="dropdown-item" href="#">Lista tres</a></li>
+                  </ul>
+                </li>
+                <li><a class="dropdown-item" href="#">Búsqueda en la tienda</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('cart_page') }}">Carrito de compras</a></li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Caja de la tienda</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ url_for('checkout_page') }}">Caja Uno</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('checkout_page') }}">Caja dos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('checkout_page') }}">Pago completo</a></li>
+                  </ul>
+                </li>
+                <li><a class="dropdown-item" href="#">Tienda Single One</a></li>
+                <li><a class="dropdown-item" href="#">Tienda Single Two</a></li>
+                <li><a class="dropdown-item" href="#">Comprar Comparar</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog</a>
+              <ul class="dropdown-menu fade-down">
+                <li><a class="dropdown-item" href="#">Cuadrícula de blogs</a></li>
+                <li><a class="dropdown-item" href="#">Barra lateral de la cuadrícula</a></li>
+                <li><a class="dropdown-item" href="#">Blog individual</a></li>
+                <li><a class="dropdown-item" href="#">Barra lateral única</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">Contacto</a></li>
+          </ul>
+
+          <div class="nav-right">
+            <div class="nav-right-btn">
+              <a class="theme-btn" href="{{ url_for('become_seller') }}">Conviértete en vendedor</a>
+            </div>
+          </div>
+        </div> <!-- /.navbar-collapse -->
+      </div>
+    </nav>
+  </div>
+</header>

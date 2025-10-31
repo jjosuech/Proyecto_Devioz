@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title or 'Goemart' }}</title>
+  <link href="/static/assets/img/logo/favicon.png" rel="icon" type="image/x-icon" />
+
+  {# ---- CSS: Bootstrap primero, luego plugins, al final el style.css del tema ---- #}
+  <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <link href="/static/assets/css/all-fontawesome.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/animate.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/flexslider.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/jquery-ui.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/magnific-popup.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/nice-select.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/owl.carousel.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/style.css" rel="stylesheet" />
+
+  {# Modernizr típicamente se carga en <head> si lo necesitas para detecciones #}
+  <script src="/static/assets/js/modernizr.min.js"></script>
+
+  {% block head_css %}{% endblock %}
+</head>
+<body>
+  <!-- preloader -->
+  <div class="preloader" id="preloader">
+    <div class="loader-ripple"><div></div><div></div></div>
+  </div>
+
+  {% include 'partials/header.html' %}
+
+  {% block content %}{% endblock %}
+
+  {% include 'partials/footer.html' %}
+
+  {# ---- JS: jQuery primero, luego plugins, Bootstrap, luego scripts del tema y app.js ---- #}
+  <script src="/static/assets/js/jquery-3.7.1.min.js"></script>
+  <script src="/static/assets/js/jquery-ui.min.js"></script>
+  <script src="/static/assets/js/imagesloaded.pkgd.min.js"></script>
+  <script src="/static/assets/js/isotope.pkgd.min.js"></script>
+  <script src="/static/assets/js/jquery.easing.min.js"></script>
+  <script src="/static/assets/js/jquery.appear.min.js"></script>
+  <script src="/static/assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="/static/assets/js/owl.carousel.min.js"></script>
+  <script src="/static/assets/js/countdown.min.js"></script>
+  <script src="/static/assets/js/counter-up.js"></script>
+  <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/static/assets/js/flexslider-min.js"></script>
+  <script src="/static/assets/js/jquery.nice-select.min.js"></script>
+  <script src="/static/assets/js/wow.min.js"></script>
+
+  {# Bootstrap bundle (incluye Popper) va después de jQuery #}
+  <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+  {# Librerías opcionales del demo (si las usas en alguna página) #}
+  <script src="/static/assets/js/apexcharts.min.js"></script>
+  <script src="/static/assets/js/apexchart-custom.js"></script>
+
+  {# Script principal del tema (inicializa sliders, wow, etc.) #}
+  <script src="/static/assets/js/main.js"></script>
+
+  {# Tu JS para carrito y lógica propia #}
+  <script src="/static/js/app.js"></script>
+
+  {# Ocultar preloader al terminar de cargar #}
+  <script>
+    window.addEventListener('load', function () {
+      var pre = document.getElementById('preloader');
+      if (pre) pre.style.display = 'none';
+      if (typeof WOW === 'function') { new WOW().init(); }
+    });
+  </script>
+
+  {% block body_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% set title = product.title %}
+{% block content %}
+<section class="section-padding">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="product-single-img">
+          <!--<img src="{{ product.image }}" alt="{{ product.title }}" class="img-fluid rounded">-->
+          <img src="{{ url_for('static', filename=product.image.replace('static/', '')) }}" 
+            alt="{{ product.title }}" class="img-fluid rounded">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h1 class="h3">{{ product.title }}</h1>
+
+        <div class="product-price my-3">
+          <span class="h4 text-brand">${{ '%.2f'|format(product.price) }}</span>
+          {% if product.compareAt %}
+            <del class="ms-2">${{ '%.2f'|format(product.compareAt) }}</del>
+          {% endif %}
+        </div>
+
+        <!-- ⭐️ RATING -->
+        {% set full_stars = product.rating|int %}
+        {% set empty_stars = 5 - full_stars %}
+        <div class="product-rating mb-3">
+          {% for _ in range(full_stars) %}
+            <i class="fa fa-star text-warning"></i>
+          {% endfor %}
+          {% for _ in range(empty_stars) %}
+            <i class="fa fa-star text-muted"></i>
+          {% endfor %}
+          <span class="ms-2 text-muted small">{{ product.rating }}/5</span>
+        </div>
+
+        <!-- 🆕 Información adicional (antes de la descripción) -->
+        {% if product.sku or product.color or product.material %}
+        <ul class="list-unstyled text-muted small mb-3">
+          {% if product.sku %}
+            <li><strong>SKU:</strong> {{ product.sku }}</li>
+          {% endif %}
+          {% if product.color %}
+            <li><strong>Color:</strong> {{ product.color }}</li>
+          {% endif %}
+          {% if product.material %}
+            <li><strong>Material:</strong> {{ product.material }}</li>
+          {% endif %}
+        </ul>
+        {% endif %}
+
+        <!-- 📝 Descripción -->
+        {% if product.description %}
+          <p class="text-muted">{{ product.description }}</p>
+        {% endif %}
+
+        <div class="mt-4">
+          <button class="theme-btn add-to-cart" data-id="{{ product.id }}">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

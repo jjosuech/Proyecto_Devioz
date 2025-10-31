@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+<body class="gm-body">
+
+  <div class="gm-login-area">
+    <div class="gm-card">
+      <div class="gm-header">
+        <img src="{{ url_for('static', filename='assets/img/logo/logo.png') }}" alt="logo" class="gm-logo">
+        <p class="gm-subtitle">Inicie sesión con su cuenta</p>
+      </div>
+
+      <!-- FORM -->
+      <form action="{{ url_for('login') }}" method="POST" class="gm-form" autocomplete="on">
+        <!-- Si usas CSRF, agrega tu hidden aquí -->
+        <div class="gm-form-group">
+          <label for="usuario" class="gm-label">Dirección de correo electrónico</label>
+          <input id="usuario" name="usuario" type="email" class="gm-input" placeholder="tu@correo.com" required>
+        </div>
+
+        <div class="gm-form-group">
+          <label for="contrasena" class="gm-label">Contraseña</label>
+          <input id="contrasena" name="contraseña" type="password" class="gm-input" placeholder="••••••••" required>
+        </div>
+
+        <div class="gm-row">
+          <label class="gm-check">
+            <input type="checkbox" name="remember">
+            <span>Recuérdame</span>
+          </label>
+          <!-- Pon tu ruta real si la tienes; mientras tanto, “#” -->
+          <a class="gm-link" href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="gm-btn">
+          <span class="gm-btn-icon">⮕</span> Acceder
+        </button>
+      </form>
+
+      <div class="gm-footer">
+        <p>¿No tienes una cuenta?
+          <!-- Cambia por url_for('register') si existe -->
+          <a class="gm-link" href="#">Regístrate</a>
+        </p>
+
+        <div class="gm-social">
+          <span class="gm-or">o</span>
+          <p>Continuar con redes sociales</p>
+          <div class="gm-social-list">
+            <a class="gm-social-btn gm-fb" href="#"><i>f</i> Facebook</a>
+            <a class="gm-social-btn gm-gl" href="#"><i>G</i> Google</a>
+            <a class="gm-social-btn gm-tw" href="#"><i>X</i> Twitter</a>
+          </div>
+        </div>
+
+        <div class="gm-back">
+          <a class="gm-link" href="{{ url_for('home') }}">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

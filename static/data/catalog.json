@@ -1,0 +1,146 @@
+{
+  "categories": [
+    {
+      "name": "Gadgets",
+      "slug": "gadgets",
+      "owner": "EQUIPO CERCADO",
+      "icon": "laptop",
+      "children": [
+        "Power banks",
+        "Cargadores inalámbricos",
+        "Cables (USB-C, HDMI, Lightning, etc.)",
+        "Adaptadores / Hubs USB",
+        "Fundas para laptop / celular",
+        "Soportes para celular o tablet",
+        "Smartwatches / pulseras inteligentes"
+      ]
+    },
+    {
+      "name": "Gaming",
+      "slug": "gaming",
+      "owner": "KENYI",
+      "icon": "toy",
+      "children": [
+        "Auriculares gamer",
+        "Mandos / controles",
+        "Mouse gamer",
+        "Teclados gamer",
+        "Alfombrillas RGB",
+        "Sillas gamer",
+        "Luces LED RGB / accesorios de setup"
+      ]
+    },
+    {
+      "name": "Periféricos",
+      "slug": "perifericos",
+      "owner": "ELIAS",
+      "icon": "music",
+      "children": [
+        "Mouse",
+        "Teclados",
+        "Parlantes",
+        "Webcams",
+        "Micrófonos",
+        "Monitores",
+        "Impresoras"
+      ]
+    },
+    {
+      "name": "Kit de Ensamblaje",
+      "slug": "kit-de-ensamblaje",
+      "owner": "BRYAN",
+      "icon": "beauty",
+      "children": [
+        "Gabinetes",
+        "Placas madre",
+        "Procesadores",
+        "Tarjetas gráficas",
+        "Memorias RAM",
+        "SSD / HDD",
+        "Fuentes de poder",
+        "Ventiladores y refrigeración"
+      ]
+    },
+    {
+      "name": "Merchandising",
+      "slug": "merchandising",
+      "owner": "EQUIPO VILLA",
+      "icon": "gifts",
+      "children": [
+        "Tazas",
+        "Tomatodos",
+        "Lapiceros",
+        "Mouse pad personalizados",
+        "Agendas",
+        "Llavero"
+      ]
+    },
+    {
+      "name": "Ropa Tech & Accesorios",
+      "slug": "ropa-tech",
+      "owner": "NAYELI",
+      "icon": "dress",
+      "children": [
+        "Polos",
+        "Poleras",
+        "Gorras",
+        "Mochilas",
+        "Morrales"
+      ]
+    },
+    {
+      "name": "Oficina & Productividad",
+      "slug": "oficina-productividad",
+      "owner": "JOSUE",
+      "icon": "furniture",
+      "children": [
+        "Sillas ergonómicas",
+        "Escritorios regulables",
+        "Lámparas LED inteligentes",
+        "Organizadores de cables",
+        "Pads de carga inalámbrica"
+      ]
+    },
+    {
+      "name": "IoT & Smart Home",
+      "slug": "iot-smart-home",
+      "owner": "MELANIE",
+      "icon": "garden",
+      "children": [
+        "Enchufes inteligentes",
+        "Bombillas inteligentes",
+        "Cámaras de seguridad WiFi",
+        "Sensores de movimiento / temperatura",
+        "Asistentes de voz"
+      ]
+    },
+    {
+      "name": "Software & Servicios",
+      "slug": "software-servicios",
+      "owner": "CARLOS",
+      "icon": "sports",
+      "children": [
+        "Licencias y suscripciones",
+        "Cursos online Devioz",
+        "Plantillas digitales",
+        "Consultoría exprés",
+        "Implementación cloud",
+        "Mentorías y asesorías"
+      ]
+    },
+    {
+      "name": "Streaming",
+      "slug": "streaming",
+      "owner": "MIGUEL",
+      "icon": "brand",
+      "children": [
+        "Micrófonos de Condensador y USB",
+        "Interfaces de Audio",
+        "Cámaras y Webcams 4K",
+        "Capturadoras de Video",
+        "Trípodes y Brazos Articulados",
+        "Paneles de Control para Streamers"
+      ]
+    }
+  ]
+}

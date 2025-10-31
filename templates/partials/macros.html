@@ -1,0 +1,64 @@
+{% macro product_card(p) -%}
+<div class="col-6 col-md-4 col-lg-3">
+  <div class="product-item">
+    <div class="product-thumb position-relative">
+      <!-- Imagen del producto -->
+      <a href="{{ url_for('product_page', pid=p.id) }}">
+        <img src="{{ p.image }}" alt="{{ p.title }}" class="img-fluid rounded">
+      </a>
+
+      <!-- 🏷️ Badge dinámico -->
+      {% if p.badge %}
+        {% set badge_type = p.badge.type %}
+        {% set badge_label = p.badge.label %}
+        <span class="status
+          {% if badge_type == 'new' %} bg-success text-white
+          {% elif badge_type == 'hot' %} bg-danger text-white
+          {% elif badge_type == 'discount' %} bg-warning text-dark
+          {% elif badge_type == 'oos' %} bg-secondary text-white
+          {% endif %}
+        ">
+          {{ badge_label }}
+        </span>
+      {% endif %}
+
+      <!-- 🔘 Acciones del producto -->
+      <div class="product-action">
+        <a href="#" class="action-btn add-to-cart" data-id="{{ p.id }}"><i class="far fa-shopping-bag"></i></a>
+        <a href="#" class="action-btn"><i class="far fa-heart"></i></a>
+        <a href="#" class="action-btn"><i class="far fa-arrows-rotate"></i></a>
+      </div>
+    </div>
+
+    <!-- 📦 Contenido del producto -->
+    <div class="product-content text-center mt-2">
+      <!-- ⭐️ Rating dinámico -->
+      <div class="rating mb-1">
+        {% set full_stars = p.rating|int %}
+        {% set empty_stars = 5 - full_stars %}
+        {% for _ in range(full_stars) %}
+          <i class="fas fa-star text-warning"></i>
+        {% endfor %}
+        {% for _ in range(empty_stars) %}
+          <i class="far fa-star text-muted"></i>
+        {% endfor %}
+      </div>
+
+      <!-- 🏷️ Nombre -->
+      <h6 class="fw-semibold mb-1">
+        <a href="{{ url_for('product_page', pid=p.id) }}" class="text-dark text-decoration-none">
+          {{ p.title }}
+        </a>
+      </h6>
+
+      <!-- 💵 Precio -->
+      <div class="product-price">
+        <span class="fw-bold text-brand">${{ '%.2f'|format(p.price) }}</span>
+        {% if p.compareAt %}
+          <del class="text-muted ms-1 small">${{ '%.2f'|format(p.compareAt) }}</del>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{%- endmacro %}

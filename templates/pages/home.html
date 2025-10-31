@@ -1,0 +1,460 @@
+{% extends "base.html" %}
+{% set title = "Inicio" %}
+{% from 'partials/macros.html' import product_item %}
+
+{% block content %}
+
+<main class="main">
+
+  {# ================== HERO SLIDER ================== #}
+  <div class="hero-section">
+    <div class="container">
+      <div class="hero-slider owl-carousel owl-theme">
+
+        <div class="hero-single">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-12 col-lg-6 col-xl-5 offset-xl-3">
+                <div class="hero-content">
+                  <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Hasta 50% de descuento</h6>
+                  <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
+                    Para tu primera<br /><span>Goemart</span>Compras
+                  </h1>
+                  <p data-animation="fadeInLeft" data-delay=".75s">
+                    Existen muchas variantes de pasajes orem psum disponibles, pero la mayoría han sufrido alguna
+                    alteración al añadir humor.
+                  </p>
+                  <div class="hero-btn" data-animation="fadeInUp" data-delay="1s">
+                    <a class="theme-btn" href="#">Compra ahora<i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="hero-right">
+                  <div class="hero-img">
+                    <img alt="" data-animation="fadeInRight" data-delay=".25s"
+                      src="/static/assets/img/slider/hero-1.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-single">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-12 col-lg-6 col-xl-5 offset-xl-3">
+                <div class="hero-content">
+                  <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Hasta 50% de descuento</h6>
+                  <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
+                    Para tu primera<br /><span>Goemart</span>Compras
+                  </h1>
+                  <p data-animation="fadeInLeft" data-delay=".75s">Existen muchas variantes...</p>
+                  <div class="hero-btn" data-animation="fadeInUp" data-delay="1s">
+                    <a class="theme-btn" href="#">Compra ahora<i class="fas fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="hero-right">
+                  <div class="hero-img">
+                    <img alt="" data-animation="fadeInRight" data-delay=".25s"
+                      src="/static/assets/img/slider/hero-2.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.hero-slider -->
+    </div>
+  </div>
+  {# ================== HERO SLIDER END ================== #}
+
+  {# ================== SMALL BANNERS ================== #}
+  <div class="small-banner pt-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="banner-item">
+            <img alt="" src="/static/assets/img/banner/mini-banner-1.jpg" />
+            <div class="banner-content">
+              <p>Colecciones populares</p>
+              <h3>Mejor oferta de viajes<br />Colecciones</h3>
+              <a href="#">Descúbrelo ahora</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="banner-item">
+            <img alt="" src="/static/assets/img/banner/mini-banner-2.jpg" />
+            <div class="banner-content">
+              <p>Colecciones de Apple</p>
+              <h3>Reloj inteligente de Apple<br />Colecciones</h3>
+              <a href="#">Compra ahora</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="banner-item">
+            <img alt="" src="/static/assets/img/banner/mini-banner-3.jpg" />
+            <div class="banner-content">
+              <p>Colecciones de zapatos</p>
+              <h3>Temporada de verano<br />Zapato hasta<span>50%</span>Apagado</h3>
+              <a href="#">Descúbrelo ahora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# ================== SMALL BANNERS END ================== #}
+
+  {# ================== CATEGORÍAS (desde categories.json con icono .svg) ================== #}
+  <div class="category-area pt-70 pb-90">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="site-heading-inline">
+            <h2 class="site-title">
+              <img alt="" src="{{ url_for('static', filename='assets/img/icon/category.svg') }}" />
+              Categoría superior
+            </h2>
+            <a href="{{ url_for('shop') }}">Ver más<i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2">
+        {% for c in nav_categories %}
+        {# Contador: productos por categoría; si no hay, usa cantidad de subcategorías/children como fallback #}
+        {% set count = (products | selectattr('category','equalto', c.name) | list | length) %}
+        {% if count == 0 and (c.subs is defined or c.children is defined) %}
+        {% set count = (c.subs if c.subs is defined else c.children)|length %}
+        {% endif %}
+
+        {# Archivo de icono: si viene con extensión la respetamos, si no agregamos .svg #}
+        {% if c.icon %}
+        {% set icon_file = c.icon if '.' in c.icon else c.icon ~ '.svg' %}
+        {% else %}
+        {% set icon_file = 'category.svg' %}
+        {% endif %}
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="category-item">
+            <a href="{{ url_for('shop') }}?cat={{ c.name | urlencode }}">
+              <div class="category-info">
+                <div class="icon">
+                  <img alt="{{ c.name }}" src="{{ url_for('static', filename='assets/img/icon/' ~ icon_file) }}" />
+                </div>
+                <div class="content">
+                  <h4>{{ c.name }}</h4>
+                  <p>{{ "%02d"|format(count) }} artículos</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+  {# ================== CATEGORÍAS END ================== #}
+
+  {# ================== CATEGORÍAS END ================== #}
+
+  {# ================== CATEGORÍAS END ================== #}
+
+  {# ================== PRODUCTOS: TENDENCIA (dinámico) ================== #}
+  <div class="product-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="site-heading-inline">
+            <h2 class="site-title"><img alt="" src="/static/assets/img/icon/trending.svg" />Artículos de tendencia</h2>
+            <a href="#">Ver más<i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="product-slider owl-carousel owl-theme">
+        <!-- poblado dinámicamente desde /static/assets/data/products.json -->
+        </div>
+    </div>
+  </div>
+
+  {# ================== MID BANNERS ================== #}
+  <div class="mid-banner pt-100 pb-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="banner-item">
+            <img alt="" src="/static/assets/img/banner/mid-banner-1.jpg" />
+            <div class="banner-content">
+              <p>Colecciones principales</p>
+              <h3>Moda femenina de moda<br />A<span>40%</span>Apagado</h3>
+              <a class="theme-btn" href="#">Compra ahora</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="banner-item">
+            <img alt="" src="/static/assets/img/banner/mid-banner-2.jpg" />
+            <div class="banner-content">
+              <p>Venta de auriculares</p>
+              <h3>Venta de auriculares en alza<br />A<span>50%</span>Apagado</h3>
+              <a class="theme-btn" href="#">Compra ahora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ================== PRODUCTOS: POPULARES (dinámico) ================== #}
+  <div class="product-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="site-heading-inline">
+            <h2 class="site-title"><img alt="" src="/static/assets/img/icon/hot.svg" />Artículos populares</h2>
+            <a href="#">Ver más<i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="product-slider owl-carousel owl-theme">
+        <!-- poblado dinámicamente desde /static/assets/data/products.json -->
+        </div>
+    </div>
+  </div>
+
+  {# ================== PRODUCTOS: RECIÉN LLEGADOS (dinámico) ================== #}
+  <div class="product-area pt-90 pb-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="site-heading-inline">
+            <h2 class="site-title"><img alt="" src="/static/assets/img/icon/new.svg" />Recién llegados</h2>
+            <a href="#">Ver más<i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="product-slider owl-carousel owl-theme">
+        <!-- poblado dinámicamente desde /static/assets/data/products.json -->
+        </div>
+    </div>
+  </div>
+
+  {# ================== BIG BANNER ================== #}
+  <div class="big-banner">
+    <div class="container">
+      <div class="banner-wrap" style="background-image: url(/static/assets/img/banner/big-banner.jpg);">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="banner-content">
+              <div class="banner-info">
+                <h6>Mega colecciones</h6>
+                <h2>Gran venta hasta<span>40%</span>Apagado</h2>
+                <p>en nuestras tiendas outlet</p>
+              </div>
+              <a class="theme-btn" href="#">Compra ahora<i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# ================== BRAND AREA ================== #}
+  <div class="brand-area pt-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="site-heading-inline">
+            <h2 class="site-title"><img alt="" src="/static/assets/img/icon/brand.svg" />Marcas populares</h2>
+            <a href="#">Todas las marcas<i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="brand-slider owl-carousel owl-theme">
+        {% for i in range(1,7) %}
+        <div class="brand-item"><img alt="" src="/static/assets/img/brand/{{ '%02d' % i }}.png" /></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# ================== TESTIMONIOS ================== #}
+  <div class="testimonial-area bg py-90">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <div class="site-heading text-center">
+            <span class="site-title-tagline">Testimonios</span>
+            <h2 class="site-title">Lo que nuestro cliente<span>Dice</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-slider owl-carousel owl-theme">
+        {% for t in [
+        ('01.jpg','Sylvia H. Green','Cliente'),
+        ('02.jpg','Gordo Novak','Cliente'),
+        ('03.jpg','Reid E. Butt','Cliente'),
+        ('04.jpg','Parker Jiménez','Cliente'),
+        ('05.jpg','Heruli Nez','Cliente')
+        ] %}
+        <div class="testimonial-item">
+          <div class="testimonial-author">
+            <div class="testimonial-author-img"><img alt="" src="/static/assets/img/testimonial/{{ t[0] }}" /></div>
+            <div class="testimonial-author-info">
+              <h4>{{ t[1] }}</h4>
+              <p>{{ t[2] }}</p>
+            </div>
+          </div>
+          <div class="testimonial-quote">
+            <p>Hay muchas variantes de pasajes largos disponibles, pero la mayoría del contenido ha sufrido
+              modificaciones…</p>
+          </div>
+          <div class="testimonial-rate">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="testimonial-quote-icon"><img alt="" src="/static/assets/img/icon/quote.svg" /></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# ================== BLOG ================== #}
+  <div class="blog-area py-90">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <div class="site-heading text-center">
+            <span class="site-title-tagline">Nuestro blog</span>
+            <h2 class="site-title">Últimas noticias y<span>Blog</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for i in [1,2,3] %}
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-item wow fadeInUp" data-wow-delay=".25s">
+            <div class="blog-item-img">
+              <img alt="Thumb" src="/static/assets/img/blog/{{ '%02d' % i }}.jpg" />
+            </div>
+            <div class="blog-item-info">
+              <div class="blog-item-meta">
+                <ul>
+                  <li><a href="#"><i class="far fa-user-circle"></i>Por Alicia Davis</a></li>
+                  <li><a href="#"><i class="far fa-calendar-alt"></i>29 de enero de 2025</a></li>
+                </ul>
+              </div>
+              <h4 class="blog-title"><a href="#">Hay muchas variantes de pasaje disponibles, la mayoría sufrieron.</a>
+              </h4>
+              <p>Hay muchas variaciones disponibles, la mayoría han sufrido alteraciones de palabras aleatorias.</p>
+              <a class="theme-btn" href="#">Leer más<i class="fas fa-arrow-right-long"></i></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# ================== NEWSLETTER ================== #}
+  <div class="newsletter-area pt-60 pb-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <div class="newsletter-content">
+            <h3>Conseguir<span>20%</span>Cupón de descuento</h3>
+            <p>Suscríbete a nuestro boletín informativo</p>
+            <div class="subscribe-form">
+              <form action="#">
+                <input class="form-control" placeholder="Your Valid Email Address" type="email" />
+                <button class="theme-btn" type="submit">Suscribir<i class="far fa-paper-plane"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="newsletter-img-1"><img alt="" src="/static/assets/img/newsletter/01.png" /></div>
+    <div class="newsletter-img-2"><img alt="" src="/static/assets/img/newsletter/02.png" /></div>
+  </div>
+  {# ========= MODAL POPUP BANNER ========= #}
+  <div class="modal popup-banner fade" id="popup-banner" tabindex="-1" aria-hidden="true"
+    aria-labelledby="popupBannerLabel">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
+          <i class="far fa-xmark"></i>
+        </button>
+        <div class="modal-body">
+          <div class="popup-banner-content">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="popup-banner-img">
+                  <img src="/static/assets/img/banner/popup-banner.jpg" alt="Promo Goemart" />
+                </div>
+              </div>
+              <div class="col-lg-6 align-self-center">
+                <div class="popup-banner-info">
+                  <h6>¡Superoferta de 7 días!</h6>
+                  <h2>¡Date prisa! ¡Hasta <span>50%</span> de descuento!</h2>
+                  <p>Hay muchas variaciones, la mayoría han sufrido alteraciones de alguna forma. ¡Aprovecha la oferta
+                    antes de que termine!</p>
+                  <a class="theme-btn" href="{{ url_for('shop') }}">Empieza a comprar ahora<i
+                      class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- /.popup-banner-content -->
+        </div>
+      </div>
+    </div>
+  </div>
+  {# ========= MODAL POPUP BANNER END ========= #}
+
+
+    <script src="/static/assets/js/trending-products.js"></script>
+</main>
+{% endblock %}
+
+{% block body_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.jQuery) {
+      var $ = window.jQuery;
+
+      // Hero
+      if ($.fn.owlCarousel) {
+        $('.hero-slider').owlCarousel({
+          items: 1, loop: true, autoplay: true, autoplayTimeout: 5000, dots: true, nav: false
+        });
+
+        // Carruseles de productos
+        $('.product-slider').owlCarousel({
+          loop: true, autoplay: false, margin: 24, dots: false, nav: true,
+          responsive: { 0: { items: 1 }, 576: { items: 2 }, 992: { items: 3 }, 1200: { items: 4 } }
+        });
+
+        // Marcas
+        $('.brand-slider').owlCarousel({
+          loop: true, autoplay: true, margin: 24, dots: false, nav: false,
+          responsive: { 0: { items: 2 }, 576: { items: 3 }, 768: { items: 4 }, 992: { items: 5 }, 1200: { items: 6 } }
+        });
+
+        // Testimonios
+        $('.testimonial-slider').owlCarousel({
+          items: 1, loop: true, autoplay: true, dots: true, nav: false
+        });
+      }
+    }
+  });
+</script>
+{% endblock %}

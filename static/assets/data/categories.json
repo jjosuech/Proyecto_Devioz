@@ -1,0 +1,124 @@
+[
+  {
+    "name": "Gadgets",
+    "icon": "laptop.svg",
+    "children": [
+      "Power banks",
+      "Cargadores inalámbricos",
+      "Cables (USB-C, HDMI, Lightning, etc.)",
+      "Adaptadores / Hubs USB",
+      "Fundas para laptop / celular",
+      "Soportes para celular o tablet",
+      "Smartwatches / Pulseras inteligentes"
+    ]
+  },
+  {
+    "name": "Gaming",
+    "icon": "toy.svg",
+    "children": [
+      "Auriculares gamer",
+      "Mandos / Controles",
+      "Mouse gamer",
+      "Teclados gamer",
+      "Alfombrillas RGB",
+      "Sillas gamer",
+      "Luces LED RGB / accesorios de setup"
+    ]
+  },
+  {
+    "name": "Periféricos",
+    "icon": "music.svg",
+    "children": [
+      "Mouse",
+      "Teclados",
+      "Parlantes",
+      "Webcams",
+      "Micrófonos",
+      "Monitores",
+      "Impresoras"
+    ]
+  },
+  {
+    "name": "Kit de Ensamblaje",
+    "icon": "gifts.svg",
+    "children": [
+      "Gabinetes",
+      "Placas madre",
+      "Procesadores",
+      "Tarjetas gráficas",
+      "Memorias RAM",
+      "SSD / HDD",
+      "Fuentes de poder",
+      "Refrigeración (fans / AIO)"
+    ]
+  },
+  {
+    "name": "Merchandising",
+    "icon": "dress.svg",
+    "children": [
+      "Tazas",
+      "Tomatodos",
+      "Lapiceros",
+      "Mouse pad personalizados",
+      "Agendas",
+      "Llavero"
+    ]
+  },
+  {
+    "name": "Ropa Tech & Accesorios",
+    "icon": "mother.svg",
+    "children": [
+      "Polos",
+      "Poleras",
+      "Gorras",
+      "Mochilas",
+      "Morrales"
+    ]
+  },
+  {
+    "name": "Oficina & Productividad",
+    "icon": "furniture.svg",
+    "children": [
+      "Sillas ergonómicas",
+      "Escritorios regulables",
+      "Lámparas LED inteligentes",
+      "Organizadores de cables",
+      "Pads de carga inalámbrica"
+    ]
+  },
+  {
+    "name": "IoT & Smart Home",
+    "icon": "garden.svg",
+    "children": [
+      "Enchufes inteligentes",
+      "Bombillas inteligentes (RGB / voz)",
+      "Cámaras de seguridad WiFi",
+      "Sensores (movimiento / temperatura)",
+      "Asistentes de voz"
+    ]
+  },
+  {
+    "name": "Software & Servicios",
+    "icon": "beauty.svg",
+    "children": [
+      "Licencias y suscripciones",
+      "Cursos online Devioz",
+      "Plantillas digitales",
+      "Consultoría exprés",
+      "Implementación cloud",
+      "Mentorías / asesorías"
+    ]
+  },
+  {
+    "name": "Streaming",
+    "icon": "sports.svg",
+    "children": [
+      "Micrófonos (USB / Condensador)",
+      "Interfaces de audio",
+      "Cámaras / Webcams 4K",
+      "Capturadoras de video",
+      "Trípodes / brazos articulados",
+      "Paneles de control para streamers"
+    ]
+  }
+]
